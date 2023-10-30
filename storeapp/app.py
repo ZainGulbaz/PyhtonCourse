@@ -23,11 +23,23 @@ stores=[
 def getStores():
     return stores;
 
-#Create a store
+
+#Create the stores
 @app.post("/store")
 def createStore():
-    store= request.json;
+    store=request.json;
     stores.append(store);
+    return {"message":"The store has been created"},254;
 
-    return {"message":"The store has been created successfully"};
 
+#Give us a store on the basis of id
+
+# FE -> req he wants a store with id 0 -> return store with id 0
+
+# Path parameter
+
+@app.get("/store/<string:storeId>")
+def getStoreById(storeId):
+    if(int(storeId) >= len(stores)):
+        return {"error":"The id provided is not valid"},404;
+    return stores[int(storeId)];

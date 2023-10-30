@@ -1,10 +1,13 @@
+#1 import flask library
+
 from flask import Flask;
+
+#Create an application
 
 app= Flask(__name__);
 
+#Declare the api type
 
-@app.get("/api")
+@app.route("/api")
 def getData():
-    return { "name":"Zain Gulbaz" }
-        
-        
+    return {"store":"Dominos"}

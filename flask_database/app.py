@@ -26,6 +26,35 @@ def getStudents():
     cursor.close();
     return students;
 
+@app.get("/student/<string:id>")
+def getStudentById(id):
+    cursor=connection.cursor(dictionary=True);
+    cursor.execute("SELECT * FROM student WHERE id="+id);
+    student=cursor.fetchall();
+    cursor.close();
+    return student;
+
+@app.put("/student/name/<string:id>")
+def updateStudentName(id):
+    body=request.json;
+    cursor=connection.cursor();
+    cursor.execute("UPDATE student SET name=%s WHERE id=%s",[body["name"],int(id)]);
+    connection.commit();
+    cursor.close();
+    return {"message":"success update"}
+
+
+
+
+
+
+
+
+
+
+    
+
+
 
 
     

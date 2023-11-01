@@ -43,6 +43,14 @@ def updateStudentName(id):
     cursor.close();
     return {"message":"success update"}
 
+@app.delete("/student/<string:id>")
+def deleteStudentById(id):
+    cursor=connection.cursor();
+    cursor.execute("DELETE FROM student WHERE id=%s",[int(id)]);
+    connection.commit();
+    cursor.close();
+    return {"message":"delete success"};
+
 
 
 
